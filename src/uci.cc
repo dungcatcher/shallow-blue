@@ -25,6 +25,7 @@ void loadBook() {
 void initOptions() {
   optionsMap["OwnBook"] = Option(false);
   optionsMap["BookPath"] = Option("book.bin", &loadBook);
+  optionsMap["forcedEnpassant"] = Option(true);
 }
 
 void uciNewGame() {
