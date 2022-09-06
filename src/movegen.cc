@@ -127,7 +127,7 @@ void MoveGen::_genWhitePawnLeftAttacks(const Board &board) {
 
   U64 leftEnPassant = (board.getPieces(WHITE, PAWN) << 7) & board.getEnPassant() & ~FILE_H;
 
-  if (optionsMap["forcedEnpassant"].getValue() == "true") {
+  if (optionsMap["forcedEnpassant"].getValue() == "false") {
     // Add regular attacks (Not promotions or en passants)
     while (leftRegularAttacks) {
       int to = _popLsb(leftRegularAttacks);
@@ -167,7 +167,7 @@ void MoveGen::_genWhitePawnRightAttacks(const Board &board) {
 
   U64 rightEnPassant = (board.getPieces(WHITE, PAWN) << 9) & board.getEnPassant() & ~FILE_A;
 
-  if (optionsMap["forcedEnpassant"].getValue() == "true") {
+  if (optionsMap["forcedEnpassant"].getValue() == "false") {
     // Add regular attacks (Not promotions or en passants)
     while (rightRegularAttacks) {
       int to = _popLsb(rightRegularAttacks);
@@ -237,7 +237,7 @@ void MoveGen::_genBlackPawnLeftAttacks(const Board &board) {
 
   U64 leftEnPassant = (board.getPieces(BLACK, PAWN) >> 9) & board.getEnPassant() & ~FILE_H;
 
-  if (optionsMap["forcedEnpassant"].getValue() == "true") {
+  if (optionsMap["forcedEnpassant"].getValue() == "false") {
     // Add regular attacks (Not promotions or en passants)
     while (leftRegularAttacks) {
       int to = _popLsb(leftRegularAttacks);
@@ -277,7 +277,7 @@ void MoveGen::_genBlackPawnRightAttacks(const Board &board) {
 
   U64 rightEnPassant = (board.getPieces(BLACK, PAWN) >> 7) & board.getEnPassant() & ~FILE_A;
 
-  if (optionsMap["forcedEnpassant"].getValue() == "true") { // Forced enpassant not enabled
+  if (optionsMap["forcedEnpassant"].getValue() == "false") { // Forced enpassant not enabled
     // Add regular attacks (Not promotions or en passants)
     while (rightRegularAttacks) {
       int to = _popLsb(rightRegularAttacks);
@@ -313,7 +313,7 @@ void MoveGen::_genBlackPawnRightAttacks(const Board &board) {
 }
 
 void MoveGen::_genWhitePawnMoves(const Board &board) {
-  if (optionsMap["forcedEnpassant"].getValue() == "true") { // Forced enpassant not enabled
+  if (optionsMap["forcedEnpassant"].getValue() == "false") { // Forced enpassant not enabled
     _genWhitePawnSingleMoves(board);
     _genWhitePawnDoubleMoves(board);
     _genWhitePawnLeftAttacks(board);
@@ -334,7 +334,7 @@ void MoveGen::_genWhitePawnMoves(const Board &board) {
 }
 
 void MoveGen::_genBlackPawnMoves(const Board &board) {
-  if (optionsMap["forcedEnpassant"].getValue() == "true") {
+  if (optionsMap["forcedEnpassant"].getValue() == "false") {
     _genBlackPawnSingleMoves(board);
     _genBlackPawnDoubleMoves(board);
     _genBlackPawnLeftAttacks(board);
