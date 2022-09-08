@@ -140,8 +140,8 @@ void perftDivide(int depth) {
 }
 
 void printEngineInfo() {
-  std::cout << "id name Shallow Blue " << VER_MAJ << "." << VER_MIN << "." << VER_PATCH << std::endl;
-  std::cout << "id author Rhys Rustad-Elliott" << std::endl;
+  std::cout << "id name Dungfish " << VER_MAJ << "." << VER_MIN << "." << VER_PATCH << std::endl;
+  std::cout << "id author Ewan Odenthal" << std::endl;
   std::cout << std::endl;
 
   for (auto optionPair : optionsMap) {
@@ -174,8 +174,8 @@ void setOption(std::istringstream &is) {
 }
 
 void loop() {
-  std::cout << "Shallow Blue " << VER_MAJ << "." << VER_MIN << "." << VER_PATCH;
-  std::cout << " by Rhys Rustad-Elliott";
+  std::cout << "Dungfish " << VER_MAJ << "." << VER_MIN << "." << VER_PATCH;
+  std::cout << " by Ewan Odenthal";
   std::cout << " (built " << __DATE__ << " " << __TIME__ << ")" << std::endl;
 
 #ifdef __DEBUG__
