@@ -140,7 +140,7 @@ void perftDivide(int depth) {
 }
 
 void printEngineInfo() {
-  std::cout << "id name Dungfish " << VER_MAJ << "." << VER_MIN << "." << VER_PATCH << std::endl;
+  std::cout << "id name Dungfish " << std::endl;
   std::cout << "id author Ewan Odenthal" << std::endl;
   std::cout << std::endl;
 
@@ -174,7 +174,7 @@ void setOption(std::istringstream &is) {
 }
 
 void loop() {
-  std::cout << "Dungfish " << VER_MAJ << "." << VER_MIN << "." << VER_PATCH;
+  std::cout << "Dungfish";
   std::cout << " by Ewan Odenthal";
   std::cout << " (built " << __DATE__ << " " << __TIME__ << ")" << std::endl;
 
