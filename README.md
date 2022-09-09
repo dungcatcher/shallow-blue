@@ -1,9 +1,4 @@
-<p align="center">
-  <img src="logos/logo.png" height="220" width="220">
-</p>
-
 <h1 align="center">Dungfish</h1>
-<p align="center">(not <a href="https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)">Deep Blue</a>)</p>
 
 <p align="center">
   <a href="https://travis-ci.org/GunshipPenguin/shallow-blue"><img src="https://img.shields.io/travis/GunshipPenguin/shallow-blue/master.svg"></a>
