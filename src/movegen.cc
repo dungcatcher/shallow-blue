@@ -127,35 +127,27 @@ void MoveGen::_genWhitePawnLeftAttacks(const Board &board) {
 
   U64 leftEnPassant = (board.getPieces(WHITE, PAWN) << 7) & board.getEnPassant() & ~FILE_H;
 
-  if (optionsMap["forcedEnpassant"].getValue() == "false") {
-    // Add regular attacks (Not promotions or en passants)
-    while (leftRegularAttacks) {
-      int to = _popLsb(leftRegularAttacks);
+  // Add regular attacks (Not promotions or en passants)
+  while (leftRegularAttacks) {
+    int to = _popLsb(leftRegularAttacks);
 
-      Move move = Move(to - 7, to, PAWN, Move::CAPTURE);
-      move.setCapturedPieceType(board.getPieceAtSquare(BLACK, to));
+    Move move = Move(to - 7, to, PAWN, Move::CAPTURE);
+    move.setCapturedPieceType(board.getPieceAtSquare(BLACK, to));
 
-      _moves.push_back(move);
-    }
-
-    // Add promotion attacks
-    while (leftAttackPromotions) {
-      int to = _popLsb(leftAttackPromotions);
-      _genPawnPromotions(to - 7, to, Move::CAPTURE, board.getPieceAtSquare(BLACK, to));
-    }
-
-    // Add en passant attacks
-    // There can only be one en passant square at a time, so no need for loop
-    if (leftEnPassant) {
-      int to = _popLsb(leftEnPassant);
-      _moves.push_back(Move(to - 7, to, PAWN, Move::EN_PASSANT));
-    }
+    _moves.push_back(move);
   }
-  else {
-    if (leftEnPassant) {
-      int to = _popLsb(leftEnPassant);
-      _moves.push_back(Move(to - 7, to, PAWN, Move::EN_PASSANT));
-    }
+
+  // Add promotion attacks
+  while (leftAttackPromotions) {
+    int to = _popLsb(leftAttackPromotions);
+    _genPawnPromotions(to - 7, to, Move::CAPTURE, board.getPieceAtSquare(BLACK, to));
+  }
+
+  // Add en passant attacks
+  // There can only be one en passant square at a time, so no need for loop
+  if (leftEnPassant) {
+    int to = _popLsb(leftEnPassant);
+    _moves.push_back(Move(to - 7, to, PAWN, Move::EN_PASSANT));
   }
 }
 
@@ -167,35 +159,27 @@ void MoveGen::_genWhitePawnRightAttacks(const Board &board) {
 
   U64 rightEnPassant = (board.getPieces(WHITE, PAWN) << 9) & board.getEnPassant() & ~FILE_A;
 
-  if (optionsMap["forcedEnpassant"].getValue() == "false") {
-    // Add regular attacks (Not promotions or en passants)
-    while (rightRegularAttacks) {
-      int to = _popLsb(rightRegularAttacks);
+  // Add regular attacks (Not promotions or en passants)
+  while (rightRegularAttacks) {
+    int to = _popLsb(rightRegularAttacks);
 
-      Move move = Move(to - 9, to, PAWN, Move::CAPTURE);
-      move.setCapturedPieceType(board.getPieceAtSquare(BLACK, to));
+    Move move = Move(to - 9, to, PAWN, Move::CAPTURE);
+    move.setCapturedPieceType(board.getPieceAtSquare(BLACK, to));
 
-      _moves.push_back(move);
-    }
-
-    // Add promotion attacks
-    while (rightAttackPromotions) {
-      int to = _popLsb(rightAttackPromotions);
-      _genPawnPromotions(to - 9, to, Move::CAPTURE, board.getPieceAtSquare(BLACK, to));
-    }
-
-    // Add en passant attacks
-    // There can only be one en passant square at a time, so no need for loop
-    if (rightEnPassant) {
-      int to = _popLsb(rightEnPassant);
-      _moves.push_back(Move(to - 9, to, PAWN, Move::EN_PASSANT));
-    }
+    _moves.push_back(move);
   }
-  else {
-    if (rightEnPassant) {
-      int to = _popLsb(rightEnPassant);
-      _moves.push_back(Move(to - 9, to, PAWN, Move::EN_PASSANT));
-    }
+
+  // Add promotion attacks
+  while (rightAttackPromotions) {
+    int to = _popLsb(rightAttackPromotions);
+    _genPawnPromotions(to - 9, to, Move::CAPTURE, board.getPieceAtSquare(BLACK, to));
+  }
+
+  // Add en passant attacks
+  // There can only be one en passant square at a time, so no need for loop
+  if (rightEnPassant) {
+    int to = _popLsb(rightEnPassant);
+    _moves.push_back(Move(to - 9, to, PAWN, Move::EN_PASSANT));
   }
 }
 
@@ -237,35 +221,27 @@ void MoveGen::_genBlackPawnLeftAttacks(const Board &board) {
 
   U64 leftEnPassant = (board.getPieces(BLACK, PAWN) >> 9) & board.getEnPassant() & ~FILE_H;
 
-  if (optionsMap["forcedEnpassant"].getValue() == "false") {
-    // Add regular attacks (Not promotions or en passants)
-    while (leftRegularAttacks) {
-      int to = _popLsb(leftRegularAttacks);
+  // Add regular attacks (Not promotions or en passants)
+  while (leftRegularAttacks) {
+    int to = _popLsb(leftRegularAttacks);
 
-      Move move = Move(to + 9, to, PAWN, Move::CAPTURE);
-      move.setCapturedPieceType(board.getPieceAtSquare(WHITE, to));
+    Move move = Move(to + 9, to, PAWN, Move::CAPTURE);
+    move.setCapturedPieceType(board.getPieceAtSquare(WHITE, to));
 
-      _moves.push_back(move);
-    }
-
-    // Add promotion attacks
-    while (leftAttackPromotions) {
-      int to = _popLsb(leftAttackPromotions);
-      _genPawnPromotions(to + 9, to, Move::CAPTURE, board.getPieceAtSquare(WHITE, to));
-    }
-
-    // Add en passant attacks
-    // There can only be one en passant square at a time, so no need for loop
-    if (leftEnPassant) {
-      int to = _popLsb(leftEnPassant);
-      _moves.push_back(Move(to + 9, to, PAWN, Move::EN_PASSANT));
-    }
+    _moves.push_back(move);
   }
-  else {
-    if (leftEnPassant) {
-      int to = _popLsb(leftEnPassant);
-      _moves.push_back(Move(to + 9, to, PAWN, Move::EN_PASSANT));
-    }
+
+  // Add promotion attacks
+  while (leftAttackPromotions) {
+    int to = _popLsb(leftAttackPromotions);
+    _genPawnPromotions(to + 9, to, Move::CAPTURE, board.getPieceAtSquare(WHITE, to));
+  }
+
+  // Add en passant attacks
+  // There can only be one en passant square at a time, so no need for loop
+  if (leftEnPassant) {
+    int to = _popLsb(leftEnPassant);
+    _moves.push_back(Move(to + 9, to, PAWN, Move::EN_PASSANT));
   }
 }
 
@@ -277,81 +253,42 @@ void MoveGen::_genBlackPawnRightAttacks(const Board &board) {
 
   U64 rightEnPassant = (board.getPieces(BLACK, PAWN) >> 7) & board.getEnPassant() & ~FILE_A;
 
-  if (optionsMap["forcedEnpassant"].getValue() == "false") { // Forced enpassant not enabled
-    // Add regular attacks (Not promotions or en passants)
-    while (rightRegularAttacks) {
-      int to = _popLsb(rightRegularAttacks);
+  // Add regular attacks (Not promotions or en passants)
+  while (rightRegularAttacks) {
+    int to = _popLsb(rightRegularAttacks);
 
-      Move move = Move(to + 7, to, PAWN, Move::CAPTURE);
-      move.setCapturedPieceType(board.getPieceAtSquare(WHITE, to));
+    Move move = Move(to + 7, to, PAWN, Move::CAPTURE);
+    move.setCapturedPieceType(board.getPieceAtSquare(WHITE, to));
 
-      _moves.push_back(move);
-    }
-
-    // Add promotion attacks
-    while (rightAttackPromotions) {
-      int to = _popLsb(rightAttackPromotions);
-      _genPawnPromotions(to + 7, to, Move::CAPTURE, board.getPieceAtSquare(WHITE, to));
-    }
-
-    // Add en passant attacks
-    // There can only be one en passant square at a time, so no need for loop
-    if (rightEnPassant) {
-      int to = _popLsb(rightEnPassant);
-      _moves.push_back(Move(to + 7, to, PAWN, Move::EN_PASSANT));
-    }
+    _moves.push_back(move);
   }
 
-  else {
-    if (rightEnPassant) {
-        int to = _popLsb(rightEnPassant);
-        _moves.push_back(Move(to + 7, to, PAWN, Move::EN_PASSANT));
-    }
+  // Add promotion attacks
+  while (rightAttackPromotions) {
+    int to = _popLsb(rightAttackPromotions);
+    _genPawnPromotions(to + 7, to, Move::CAPTURE, board.getPieceAtSquare(WHITE, to));
   }
 
-  
+  // Add en passant attacks
+  // There can only be one en passant square at a time, so no need for loop
+  if (rightEnPassant) {
+    int to = _popLsb(rightEnPassant);
+    _moves.push_back(Move(to + 7, to, PAWN, Move::EN_PASSANT));
+  }
 }
 
 void MoveGen::_genWhitePawnMoves(const Board &board) {
-  if (optionsMap["forcedEnpassant"].getValue() == "false") { // Forced enpassant not enabled
-    _genWhitePawnSingleMoves(board);
-    _genWhitePawnDoubleMoves(board);
-    _genWhitePawnLeftAttacks(board);
-    _genWhitePawnRightAttacks(board);
-  }
-  else { // Forced enpassant enabled
-    if (board.getEnPassant()) { // If there is a forced enpassant available
-      _genWhitePawnLeftAttacks(board);
-      _genWhitePawnRightAttacks(board);
-    }
-    else {
-      _genWhitePawnSingleMoves(board);
-      _genWhitePawnDoubleMoves(board);
-      _genWhitePawnLeftAttacks(board);
-      _genWhitePawnRightAttacks(board);
-    }
-  }
+  _genWhitePawnSingleMoves(board);
+  _genWhitePawnDoubleMoves(board);
+  _genWhitePawnLeftAttacks(board);
+  _genWhitePawnRightAttacks(board);
 }
 
 void MoveGen::_genBlackPawnMoves(const Board &board) {
-  if (optionsMap["forcedEnpassant"].getValue() == "false") {
-    _genBlackPawnSingleMoves(board);
-    _genBlackPawnDoubleMoves(board);
-    _genBlackPawnLeftAttacks(board);
-    _genBlackPawnRightAttacks(board);
-  }
-  else {
-    if (board.getEnPassant()) {
-      _genBlackPawnLeftAttacks(board);
-      _genBlackPawnRightAttacks(board);
-    }
-    else {
-      _genBlackPawnSingleMoves(board);
-      _genBlackPawnDoubleMoves(board);
-      _genBlackPawnLeftAttacks(board);
-      _genBlackPawnRightAttacks(board);
-    }
-  }
+  _genBlackPawnSingleMoves(board);
+  _genBlackPawnDoubleMoves(board);
+  _genBlackPawnLeftAttacks(board);
+  _genBlackPawnRightAttacks(board);
 }
 
 void MoveGen::_genWhiteKingMoves(const Board &board) {
