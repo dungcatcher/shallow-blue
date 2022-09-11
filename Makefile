@@ -1,4 +1,4 @@
-CXX ?= g++
+CXX = em++
 
 SRC_DIR = $(shell pwd)/src
 
